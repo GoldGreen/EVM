@@ -1,0 +1,37 @@
+﻿<Window x:Class="EVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EVM" d:DataContext="{d:DesignInstance Type=local:ViewModel}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        FontSize="20"
+        >
+    <Window.DataContext>
+        <local:ViewModel/>
+    </Window.DataContext>
+    <UniformGrid Columns="2">
+        <TextBlock>Первый операнд</TextBlock>
+        <TextBlock>Второй операнд</TextBlock>
+        <TextBox Text="{Binding Operand1}"/>
+        <TextBox Text="{Binding Operand2}"/>
+        <TextBlock Text="{Binding Converted1}"/>
+        <TextBlock Text="{Binding Converted2}"/>
+        <Button Command="{Binding DivCommand}">Деление</Button>
+        <Button Command="{Binding ConCommand}">Коньюнкция</Button>
+        <TextBlock>Флаги:</TextBlock>
+        <UniformGrid Rows="1">
+            <TextBlock>OV:</TextBlock>
+            <TextBlock Text="{Binding OV,Converter={local:FlagConverter},ConverterParameter=int}"
+                       Background="{Binding OV, Converter={local:FlagConverter},ConverterParameter=color}"/>
+            <TextBlock>Z:</TextBlock>
+            <TextBlock Text="{Binding Z,Converter={local:FlagConverter},ConverterParameter=int}"
+                       Background="{Binding Z, Converter={local:FlagConverter},ConverterParameter=color}"/>
+        </UniformGrid>
+        <TextBlock>Результат (2):</TextBlock>
+        <TextBlock Text="{Binding ConvertedResult}"/>
+        <TextBlock>Результат (10):</TextBlock>
+        <TextBlock Text="{Binding Result}"></TextBlock>
+    </UniformGrid>
+</Window>
