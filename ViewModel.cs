@@ -103,7 +103,7 @@ namespace EVM
 
         private static string ToStr(bool[] bites)
         {
-            return new(bites.Select(x => x ? '1' : '0').ToArray());
+            return $"{(bites[0] ? "-" : "")}0." + new string(bites.Skip(1).Select(x => x ? '1' : '0').ToArray());
         }
 
         private static bool[] ToBites(double value)
